@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sankalp Karkera — Data Engineer</title>
+  <meta name="description" content="Data Engineer portfolio — Python, SQL, Snowflake, Airflow, AWS, Spark. Projects, experience, and contact." />
+  <meta name="author" content="Sankalp Karkera" />
+  <meta property="og:title" content="Sankalp Karkera — Data Engineer" />
+  <meta property="og:description" content="Portfolio: Python, SQL, Snowflake, Airflow, AWS, Spark. Projects, experience, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/sankalpk365" />
+  <meta name="theme-color" content="#0ea5e9" />
+  
+  <!-- Tailwind via CDN (works on GitHub Pages) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config (optional custom colors)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a'
+            }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --ring: 0 0% 100%; }
+    html { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    .prose a { text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+
+  <script>
+    // Dark mode — persist in localStorage
+    const storageKey = 'theme';
+    function setTheme(dark) {
+      const root = document.documentElement;
+      if (dark) { root.classList.add('dark'); localStorage.setItem(storageKey, 'dark'); }
+      else { root.classList.remove('dark'); localStorage.setItem(storageKey, 'light'); }
+    }
+    // Init before paint
+    (() => {
+      const pref = localStorage.getItem(storageKey);
+      if (pref === 'dark' || (!pref && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/80 dark:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800">
+    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+      <a href="#home" class="font-extrabold tracking-tight text-xl">Sankalp<span class="text-brand-600">.</span></a>
+      <nav class="hidden sm:flex gap-6 text-sm font-medium">
+        <a href="#about" class="hover:text-brand-600">About</a>
+        <a href="#skills" class="hover:text-brand-600">Skills</a>
+        <a href="#experience" class="hover:text-brand-600">Experience</a>
+        <a href="#projects" class="hover:text-brand-600">Projects</a>
+        <a href="#contact" class="hover:text-brand-600">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button aria-label="Toggle dark mode" class="rounded-full border border-slate-200 dark:border-slate-700 p-2" onclick="setTheme(!document.documentElement.classList.contains('dark'))">
+          <!-- sun/moon -->
+          <svg class="w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36-1.42-1.42M7.05 7.05 5.64 5.64m12.02 0-1.41 1.41M7.05 16.95l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
+          <svg class="w-5 h-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="https://github.com/sankalpk365" target="_blank" rel="noreferrer" class="rounded-full border border-slate-200 dark:border-slate-700 p-2 hover:border-brand-500" aria-label="GitHub">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A12 12 0 0 0 0 12.69c0 5.37 3.44 9.92 8.2 11.53.6.12.82-.27.82-.58v-2.2c-3.34.75-4.04-1.65-4.04-1.65-.55-1.45-1.34-1.84-1.34-1.84-1.09-.77.08-.76.08-.76 1.2.09 1.83 1.27 1.83 1.27 1.07 1.89 2.81 1.34 3.5 1.03.11-.8.42-1.34.76-1.65-2.66-.31-5.46-1.38-5.46-6.14 0-1.36.47-2.47 1.24-3.34-.12-.31-.54-1.57.12-3.27 0 0 1.01-.33 3.31 1.27.96-.27 1.98-.4 3-.4s2.04.14 3 .4c2.3-1.6 3.31-1.27 3.31-1.27.66 1.7.24 2.96.12 3.27.77.87 1.24 1.98 1.24 3.34 0 4.78-2.8 5.82-5.47 6.13.43.38.81 1.12.81 2.25v3.34c0 .32.21.71.83.58A12 12 0 0 0 24 12.69 12 12 0 0 0 12 .5Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative py-20 sm:py-28">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-50/70 to-transparent dark:from-slate-800/40"></div>
+    <div class="relative mx-auto max-w-6xl px-4 grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7">
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">Hi, I'm Sankalp — <span class="text-brand-600">Data Engineer</span>.</h1>
+        <p class="mt-5 text-lg text-slate-600 dark:text-slate-300 max-w-2xl">I design and ship scalable data platforms and analytics — Python, SQL, Snowflake, Airflow, AWS, and Spark. I love turning messy datasets into reliable pipelines and business impact.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#projects" class="inline-flex items-center rounded-lg bg-brand-600 px-5 py-3 text-white font-semibold shadow hover:bg-brand-700">View Projects</a>
+          <a href="mailto:sankalp.karkera@gmail.com" class="inline-flex items-center rounded-lg border px-5 py-3 font-semibold hover:border-brand-500">Contact Me</a>
+          <a href="/resume.pdf" class="inline-flex items-center rounded-lg border px-5 py-3 font-semibold hover:border-brand-500" download>Download Résumé</a>
+        </div>
+        <div class="mt-6 text-sm text-slate-500 dark:text-slate-400">Open to roles in Data Engineering, Analytics Engineering, and Platform Engineering.</div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white/60 dark:bg-slate-900/50">
+          <h2 class="font-bold text-slate-700 dark:text-slate-200">Quick Stats</h2>
+          <dl class="mt-4 grid grid-cols-2 gap-4 text-sm">
+            <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4"><dt class="text-slate-500">Years of Exp</dt><dd class="text-2xl font-bold">6+</dd></div>
+            <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4"><dt class="text-slate-500">Pipelines Built</dt><dd class="text-2xl font-bold">100+</dd></div>
+            <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4"><dt class="text-slate-500">Tech</dt><dd class="font-semibold">Python, SQL, SF, AWS</dd></div>
+            <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4"><dt class="text-slate-500">Location</dt><dd class="font-semibold">Washington, D.C.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-extrabold tracking-tight">About</h2>
+    <p class="mt-4 max-w-3xl text-slate-600 dark:text-slate-300">I'm a data engineer focused on building robust, observable pipelines and analytics products. Recently, I migrated legacy SQL workloads to <strong>Snowflake</strong>, orchestrated with <strong>Airflow</strong>, and automated data quality checks with <strong>Python</strong>. I enjoy performance tuning, cost-aware design, and clean data models.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-extrabold tracking-tight">Skills</h2>
+    <ul class="mt-6 flex flex-wrap gap-2 text-sm">
+      <!-- Add/remove freely -->
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Python</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">SQL</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Snowflake</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Airflow</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">AWS (S3, EC2, Lambda)</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Spark</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">dbt</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Docker</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Git</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Tableau / Power BI</li>
+      <li class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border">Linux (awk/sed/grep)</li>
+    </ul>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-extrabold tracking-tight">Experience</h2>
+    <div class="mt-6 grid gap-6">
+      <article class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white/60 dark:bg-slate-900/50">
+        <header class="flex items-center justify-between">
+          <h3 class="text-lg font-bold">Data Engineer — Global Hospitality Leader (via TCS)</h3>
+          <span class="text-sm text-slate-500">2019 — Present</span>
+        </header>
+        <ul class="mt-3 list-disc ms-5 text-slate-600 dark:text-slate-300 space-y-2">
+          <li>Migrated on‑prem SQL workloads to <strong>Snowflake</strong>; orchestrated with <strong>Airflow</strong> and automated validations in <strong>Python</strong>.</li>
+          <li>Built revenue analytics engine processing 50M+ records; improved forecasting accuracy by 15% via feature engineering.</li>
+          <li>Created materialized views & clustering to cut dashboard load times by 40%.</li>
+          <li>Implemented data quality SLAs with alerts (Python + SNS/Email) reducing downtime by 25%.</li>
+        </ul>
+        <footer class="mt-4 text-sm text-slate-500">Tech: Python, SQL, Snowflake, Airflow, Spark, AWS, dbt, Tableau/Power BI</footer>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="mx-auto max-w-6xl px-4 py-16">
+    <div class="flex items-end justify-between">
+      <h2 class="text-2xl font-extrabold tracking-tight">Projects</h2>
+      <a href="https://github.com/sankalpk365?tab=repositories" target="_blank" class="text-sm hover:text-brand-600">See all →</a>
+    </div>
+    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Enterprise Hospitality Projects: High-level case studies (code private) -->
+      <!-- Revenue Intelligence Platform -->
+      <article class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white/60 dark:bg-slate-900/50 hover:border-brand-500">
+        <div class="text-sm text-slate-500">Fortune 500 Hospitality • Analytics</div>
+        <h3 class="mt-1 font-semibold">MARSHA Revenue Intelligence Platform</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Automated Revenue Strategy &amp; Hospitality Analytics</p>
+        <ul class="mt-3 list-disc ms-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <li>Built revenue analytics workflows processing <strong>50M+ booking</strong> records from Snowflake to predict optimal room rates using <strong>200+ features</strong> (seasonality, events, weather, competitor pricing).</li>
+          <li>Performed in-depth EDA in Python across <strong>8000+ properties</strong>, identifying demand drivers that improved forecasting accuracy by <strong>15%</strong>.</li>
+          <li>Automated daily reporting pipelines (Python + SQL) tracking RevPAR, ADR, and guest satisfaction; integrated with Snowflake &amp; SQL Server.</li>
+          <li>Created Snowflake materialized views to pre-aggregate performance metrics, cutting dashboard load times by <strong>40%</strong>.</li>
+          <li>Built Tableau dashboards with drill‑downs and alerts when pricing deviates beyond thresholds, enabling real‑time pricing decisions.</li>
+        </ul>
+        <div class="mt-3 text-xs">Python • Snowflake • Airflow • SQL Server • Tableau • dbt</div>
+      </article>
+
+      <!-- Loyalty CDP Enhancement -->
+      <article class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white/60 dark:bg-slate-900/50 hover:border-brand-500">
+        <div class="text-sm text-slate-500">Fortune 500 Hospitality • Customer Data Platform</div>
+        <h3 class="mt-1 font-semibold">Bonvoy CDP Enhancement</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Customer Data Platform Analytics</p>
+        <ul class="mt-3 list-disc ms-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <li>Engineered a comprehensive customer data model in Snowflake; calculated <strong>RFM</strong>, lifetime value, and behavioral segments across <strong>180M+</strong> member records.</li>
+          <li>Optimized lookups for guest profiles &amp; loyalty tiers, reducing query response times by <strong>60%</strong>.</li>
+          <li>Partnered with product &amp; engineering to validate/clean data; added rule‑based Python DQ checks to reach <strong>99.5% accuracy</strong> across touchpoints.</li>
+          <li>Built Power BI dashboards for CAC, churn probabilities, and segment migration; enabled targeted campaigns worth <strong>$12M</strong> incremental revenue.</li>
+        </ul>
+        <div class="mt-3 text-xs">Snowflake • SQL • Python • Power BI • dbt</div>
+      </article>
+
+      <!-- Marketing Attribution Engine -->
+      <article class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white/60 dark:bg-slate-900/50 hover:border-brand-500">
+        <div class="text-sm text-slate-500">Fortune 500 Hospitality • Marketing Analytics</div>
+        <h3 class="mt-1 font-semibold">MMP Attribution Engine</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Multi‑touch attribution &amp; spend optimization</p>
+        <ul class="mt-3 list-disc ms-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <li>Implemented MTA models in Python/SQL across Adobe Analytics + internal bookings, processing <strong>10M+</strong> monthly touchpoints to optimize spend.</li>
+          <li>Identified performance trends and inefficiencies, improving digital advertising ROI by <strong>35%</strong>.</li>
+          <li>Maintained Python reporting pipelines integrated with Snowflake &amp; SQL Server for consistent dashboard feeds across <strong>50+ channels</strong>.</li>
+          <li>Operationalized insights into budget allocation recommendations, driving <strong>$8M</strong> annual cost savings.</li>
+          <li>Pre‑aggregated campaign metrics in Snowflake to handle nested ad data; reduced dashboard refresh from <strong>45 min → 3 min</strong>.</li>
+        </ul>
+        <div class="mt-3 text-xs">Python • SQL • Snowflake • Adobe Analytics • Airflow • SQL Server</div>
+      </article>
+
+      <!-- Market Intelligence BI Extension -->
+      <article class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white/60 dark:bg-slate-900/50 hover:border-brand-500">
+        <div class="text-sm text-slate-500">Fortune 500 Hospitality • Market Intelligence</div>
+        <h3 class="mt-1 font-semibold">MICROS Business Intelligence Extension</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Competitive reporting &amp; pricing elasticity</p>
+        <ul class="mt-3 list-disc ms-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <li>Analyzed competitive positioning, market share shifts, and price elasticity across major metros using Python.</li>
+          <li>Built advanced SQL with window/pivot functions and stored procedures for automated monthly competitive reporting.</li>
+          <li>Delivered reports to track market penetration indices and positioning across <strong>150+ markets</strong>.</li>
+          <li>Automated Python data‑quality checks, resolving <strong>95%</strong> of inconsistencies pre‑reporting.</li>
+          <li>Constructed Tableau dashboards with parameterized market/time controls, heat maps, and elasticity visualizations.</li>
+        </ul>
+        <div class="mt-3 text-xs">Python • SQL • Stored Procedures • Tableau</div>
+      </article>
+
+      <!-- Guest Services Sentiment Intelligence -->
+      <article class="group rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white/60 dark:bg-slate-900/50 hover:border-brand-500">
+        <div class="text-sm text-slate-500">Fortune 500 Hospitality • Sentiment Intelligence</div>
+        <h3 class="mt-1 font-semibold">MGS Analytics Platform</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Guest review sentiment &amp; topic modeling</p>
+        <ul class="mt-3 list-disc ms-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <li>Analyzed <strong>2M+</strong> guest reviews &amp; feedback; implemented sentiment scoring, topic modeling, and trend analysis.</li>
+          <li>Converted unstructured feedback into operational insights with Python/SQL; built real‑time reporting on satisfaction KPIs.</li>
+          <li>Delivered monthly decks in Power BI &amp; ServiceNow to visualize sentiment, service recovery, and operational correlations across <strong>500+ properties</strong>.</li>
+          <li>Presented findings to leadership; reduced negative review response time by <strong>75%</strong> and lifted satisfaction scores by <strong>22%</strong>.</li>
+        </ul>
+        <div class="mt-3 text-xs">Python • SQL • NLP • Power BI • ServiceNow</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CERTS / EDUCATION -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-extrabold tracking-tight">Certifications & Education</h2>
+    <ul class="mt-4 grid sm:grid-cols-2 gap-4 text-sm">
+      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 bg-white/60 dark:bg-slate-900/50"><strong>AWS</strong> Certified (placeholder)</li>
+      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 bg-white/60 dark:bg-slate-900/50"><strong>B.S.</strong> in Computer Science (placeholder)</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="text-2xl font-extrabold tracking-tight">Contact</h2>
+    <div class="mt-4 flex flex-col sm:flex-row gap-4 text-sm">
+      <a href="mailto:sankalp.karkera@gmail.com" class="inline-flex items-center gap-2 rounded-xl border px-4 py-3 hover:border-brand-500">
+        <span>sankalp.karkera@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/sankalp-karkera" target="_blank" class="inline-flex items-center gap-2 rounded-xl border px-4 py-3 hover:border-brand-500">LinkedIn</a>
+      <a href="https://github.com/sankalpk365" target="_blank" class="inline-flex items-center gap-2 rounded-xl border px-4 py-3 hover:border-brand-500">GitHub</a>
+    </div>
+  </section>
+
+  <footer class="py-10 border-t border-slate-200 dark:border-slate-800">
+    <div class="mx-auto max-w-6xl px-4 text-sm text-slate-500 flex flex-wrap items-center justify-between gap-3">
+      <span>© <span id="year"></span> Sankalp Karkera. All rights reserved.</span>
+      <a href="#home" class="hover:text-brand-600">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JSON-LD for rich results (update with your links) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sankalp Karkera",
+    "jobTitle": "Data Engineer",
+    "url": "https://sankalpk365.github.io/",
+    "sameAs": [
+      "https://github.com/sankalpk365",
+      "https://www.linkedin.com/in/sankalp-karkera"
+    ],
+    "knowsAbout": ["Python", "SQL", "Snowflake", "Airflow", "AWS", "Spark", "dbt", "Data Engineering"]
+  }
+  </script>
+
+  <!-- Optional: Google Analytics (replace G-XXXXXXX) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXXXXX');
+  </script> -->
+</body>
+</html>
